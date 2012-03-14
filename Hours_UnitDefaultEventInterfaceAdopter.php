@@ -239,5 +239,17 @@ class Hours_UnitDefaultEventInterfaceAdopter implements EventInterface
         return $this->unit_default->{__FUNCTION__}();
     }
 
+    public function setPadding($padding)
+    {
+        $this->padding = $padding;
+    }
+
+    public function getPadding(){
+        return $this->padding;
+    }
+
+    /** [[Column=padding, DataType=varchar, Description=Padding, ReadOnly=true]]*/
+    public $padding = 0;
+
 
 }

@@ -10,6 +10,9 @@ class Hours_HoursException extends DbObject implements EventInterface
     /** [[Column=exception_id, DataType=int, Description=Exception, ReadOnly=true]]*/
     public $exception_id;
 
+    /** [[Column=padding, DataType=varchar, Description=Padding, ReadOnly=true]]*/
+    public $padding = 0;
+
     /** [[Column=unit_default_id, DataType=int, Description=Unit Default]]*/
     public $unit_default_id;
 
@@ -271,6 +274,7 @@ class Hours_HoursException extends DbObject implements EventInterface
     }
     
     public function getDetails($format = 'g:ia'){
+        if ($this->isClosedAllDay()) return "Closed All Day";
         $isopenstring =  $this->isOpen() ? "Open" : "Closed";
         return date( $format, $this->getStartTimeStamp()). " - " . date( $format, $this->getEndTimeStamp())." ($isopenstring)";
     }
@@ -290,6 +294,15 @@ class Hours_HoursException extends DbObject implements EventInterface
     public function getUpdateLink(){
            return "?view=add_exception&id={$this->getID()}";
     }
+
+    public function setPadding($padding)
+    {
+        $this->padding = $padding;
+    }
+
+    public function getPadding(){
+        return $this->padding;
+   }
 
 
 }

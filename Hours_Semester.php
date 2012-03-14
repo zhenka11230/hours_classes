@@ -12,6 +12,9 @@ class Hours_Semester extends DbObject implements EventInterface {
 	/** [[Column=semester_id, DataType=int, Description=Semester, ReadOnly=true]] */
 	public $semester_id;
 
+    /** [[Column=padding, DataType=varchar, Description=Padding, ReadOnly=true]]*/
+    public $padding = 0;
+
 	/** [[Column=semester_name, DataType=varchar, Description=Semester Name, MaxLength=50, Required=true]] */
 	public $semester_name;
 
@@ -183,5 +186,14 @@ class Hours_Semester extends DbObject implements EventInterface {
 	public function hasConflict(EventInterface $event){
 		
 	}
+
+    public function setPadding($padding)
+    {
+        $this->padding = $padding;
+    }
+
+    public function getPadding(){
+        return $this->padding;
+    }
 
 }
