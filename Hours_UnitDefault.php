@@ -95,6 +95,17 @@ class Hours_UnitDefault extends DbObject
         6 => 'sat'
     );
 
+    public function getClosedDays(){
+        $closed_days = array();
+        for($i = 0; $i < 7; $i++){
+            if($this->{$this->weekday_hash[$i] . "_start"} == null){
+                array_push($closed_days, $this->weekday_hash[$i]);
+            }
+        }
+
+        return $closed_days;
+    }
+
     public function getStartTimeStamp($weekday)
     {
         $start = $this->{$this->weekday_hash[$weekday] . "_start"};

@@ -35,6 +35,14 @@ class Hours_HoursException extends DbObject implements EventInterface
 
     public $unitDefault;
 
+    public function setSource(Hours_HoursException $exception){
+        $this->source = $exception;
+    }
+
+    public function getSource(){
+        return $this->source;
+    }
+
     public function isClosedAllDay(){
         return ($this->isClosed() && $this->getStartTimeStamp('only_time') == strtotime('12:00:00 AM') && $this->getEndTimeStamp('only_time') == strtotime('11:59:00 PM'));
     }
@@ -54,10 +62,10 @@ class Hours_HoursException extends DbObject implements EventInterface
                     return strtotime($this->start_date);
                     break;
                 case 'only_time' :
-                    return ConflictUtility::convertTimeStampToTimeOnly($this->getStartTimeStamp());
+                    return ConflictUtility::convertTimeStampToTimeOnly(strtotime($this->start_date));
                     break;
                 case 'only_date' :
-                    return ConflictUtility::convertTimeStampStartToDateOnly($this->getStartTimeStamp());
+                    return ConflictUtility::convertTimeStampStartToDateOnly(strtotime($this->start_date));
                     break;
             }
         }
@@ -69,10 +77,10 @@ class Hours_HoursException extends DbObject implements EventInterface
                     return strtotime($this->end_date);
                     break;
                 case 'only_time' :
-                    return ConflictUtility::convertTimeStampToTimeOnly($this->getEndTimeStamp());
+                    return ConflictUtility::convertTimeStampToTimeOnly(strtotime($this->end_date));
                     break;
                 case 'only_date' :
-                    return ConflictUtility::convertTimeStampEndToDateOnly($this->getEndTimeStamp());
+                    return ConflictUtility::convertTimeStampEndToDateOnly(strtotime($this->end_date));
                     break;
             }
         }
@@ -156,7 +164,7 @@ class Hours_HoursException extends DbObject implements EventInterface
 			ORDER BY start_date, exception_name";
         $results = $db->getAll($query);
 
-        echo $query;
+//        echo $query;
 
         //echo($query);
 

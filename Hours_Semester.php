@@ -46,10 +46,10 @@ class Hours_Semester extends DbObject implements EventInterface {
                    return strtotime($this->semester_start);
                    break;
                case 'only_time' :
-                   return ConflictUtility::convertTimeStampToTimeOnly($this->getStartTimeStamp());
+                   return ConflictUtility::convertTimeStampToTimeOnly(strtotime($this->semester_start));
                    break;
                case 'only_date' :
-                   return ConflictUtility::convertTimeStampStartToDateOnly($this->getStartTimeStamp());
+                   return ConflictUtility::convertTimeStampStartToDateOnly(strtotime($this->semester_start));
                    break;
            }
        }
@@ -61,10 +61,10 @@ class Hours_Semester extends DbObject implements EventInterface {
                    return strtotime($this->semester_end);
                    break;
                case 'only_time' :
-                   return ConflictUtility::convertTimeStampToTimeOnly($this->getEndTimeStamp());
+                   return ConflictUtility::convertTimeStampToTimeOnly(strtotime($this->semester_end));
                    break;
                case 'only_date' :
-                   return ConflictUtility::convertTimeStampEndToDateOnly($this->getEndTimeStamp());
+                   return ConflictUtility::convertTimeStampEndToDateOnly(strtotime($this->semester_end));
                    break;
            }
     }

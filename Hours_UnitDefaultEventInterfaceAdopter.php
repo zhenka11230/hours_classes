@@ -34,6 +34,10 @@ class Hours_UnitDefaultEventInterfaceAdopter implements EventInterface
         $this->unit_default = $unit_default;
     }
 
+    function getSource(){
+        return $this->unit_default;
+    }
+
     /**
      *
      * @param type $week_day int
