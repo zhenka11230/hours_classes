@@ -108,6 +108,14 @@ class Hours_HoursException extends DbObject implements EventInterface
         $this->end_date = $date;
     }
 
+    public function setStartTimeStamp($timestamp){
+        $this->start_date = date('Y-m-d H:i', $timestamp);
+    }
+
+    public function setEndTimeStamp($timestamp){
+        $this->end_date = date('Y-m-d H:i', $timestamp);
+    }
+
 
     public function fetchData($id)
     {
