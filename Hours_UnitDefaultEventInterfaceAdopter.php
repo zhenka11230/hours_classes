@@ -167,6 +167,10 @@ class Hours_UnitDefaultEventInterfaceAdopter implements EventInterface
         return $this->unit_default;
     }
 
+    public function getClosedDays(){
+        return $this->unit_default->getClosedDays();
+    }
+
     public function assertSemesterExists()
     {
         if (!isset($this->unit_default->semester)) {
